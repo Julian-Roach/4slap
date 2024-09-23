@@ -1,9 +1,5 @@
 #pragma once
 
-class rat
-{
-public:
-	int D = 0;
+#include "types/rat.h"
 
-	int get();
-};
+// In gcd.h: code for debug (remove)
