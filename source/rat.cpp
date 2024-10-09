@@ -5,13 +5,19 @@ namespace slap {
 
 	void rat::simplify()
 	{
-		int common = slap::gcd(N, D);
+		LINT common = slap::gcd(N, D);
 		N = N / common;
 		D = D / common;
-	}
+		// Normally, the numerator and denominator will cancel, but if not, warn before operations.
+		if (N > 80000000 || D > 80000000) {
+			limitCrossed = true;
+		}
 
-	void rat::set(int N_new, int D_new) { N = N_new; D = D_new; simplify(); }
-	std::tuple<int, int>  rat::get() { return { N, D }; }
+		return;
+	}
+	
+	void rat::set(LINT N_new, LINT D_new) { N = N_new; D = D_new; simplify(); }
+	intvec2 rat::get() { return { intvec2(N,D) }; }
 
 	rat rat::operator+(rat addend)
 	{
@@ -22,7 +28,7 @@ namespace slap {
 	rat rat::operator*(rat factor)
 	{
 		rat product;
-		product.set(N * factor.D + D * factor.N, D * factor.D);
+		product.set(N * factor.N, D * factor.D);
 		return product;
 	}
 
