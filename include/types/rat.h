@@ -13,7 +13,7 @@ namespace slap {
 		void simplify();
 
 	public:
-		
+
 		bool limitCrossed = false; // Is this really necessary?
 		LINT N, D;
 

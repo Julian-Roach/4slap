@@ -3,16 +3,17 @@
 #include "rat.h"
 #include <vector>
 
+// The ratvec class embodies a vector with rat objects as components
 namespace slap {
 
 	class ratvec
 	{
 	public:
-		std::vector<slap::rat> entries;
+		std::vector<rat> nums;
 
 		unsigned int getSize();
 		void setSize(unsigned int size);
-		rat get(int entry);
+		rat get(unsigned int entry);
 		void set(unsigned int entry, rat value);
 
 		ratvec operator+(ratvec addend);
@@ -20,5 +21,5 @@ namespace slap {
 	};
 
 	// Dot product operation
-	rat dot(ratvec v1, ratvec v2);
+	rat operator*(ratvec v1, ratvec v2);
 }

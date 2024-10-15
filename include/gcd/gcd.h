@@ -1,11 +1,4 @@
-
 #pragma once
-
-// Only temporarily for debugging
-#include <iostream>
-#define LOG(x) std::cout << x << std::endl;
-//
-
 
 namespace slap {
 
