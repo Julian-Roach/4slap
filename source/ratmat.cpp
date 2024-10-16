@@ -130,4 +130,47 @@ namespace slap {
 			return transformed;
 		}
 	}
+
+	ratmat I(int n)
+	{
+		ratmat identity_matrix;
+		identity_matrix.setSize(intvec2(n, n));
+		for (int i = 0; i < n; i++)
+			identity_matrix.set(intvec2(i, i), 1);
+
+		return identity_matrix;
+	}
+	
+	ratmat E(int n, intvec2 rows, rat scalar)
+	{
+		ratmat elimination_matrix;
+		elimination_matrix = I(n);
+
+		elimination_matrix.set(intvec2(rows.y - 1,rows.x - 1), scalar * -1);
+
+		return elimination_matrix;
+	};
+
+	ratmat P(int n, intvec2 rows)
+	{
+		ratmat permutation_matrix;
+		permutation_matrix = I(n);
+
+		permutation_matrix.set(intvec2(rows.x - 1, rows.x - 1), rat());
+		permutation_matrix.set(intvec2(rows.y - 1, rows.y - 1), rat());
+		permutation_matrix.set(intvec2(rows.x - 1, rows.y - 1), rat(1,1));
+		permutation_matrix.set(intvec2(rows.y - 1, rows.x - 1), rat(1,1));
+
+		return permutation_matrix;
+	}
+
+	ratmat S(int n, int row, rat scalar)
+	{
+		ratmat scaling_matrix;
+		scaling_matrix = I(n);
+
+		scaling_matrix.set(intvec2(row - 1, row - 1), scalar);
+
+		return scaling_matrix;
+	}
 }
